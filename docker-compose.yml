@@ -32,5 +32,15 @@ services:
       - .:/app
       - huggingface_cache:/root/.cache/huggingface
 
+  tunnel:
+    image: cloudflare/cloudflared:latest
+    restart: unless-stopped
+    depends_on:
+      - app
+    # 固定ドメイン用のCloudflare Tunnel（トークン方式）
+    # CLOUDFLARE_TUNNEL_TOKEN は .env から渡す
+    command: tunnel --no-autoupdate run --token ${CLOUDFLARE_TUNNEL_TOKEN}
+
+
 volumes:
   huggingface_cache:

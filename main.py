@@ -158,7 +158,7 @@ def main():
         input_placeholder = "アイデアを投げ込め、または指示を出せ..."
     else:
         st.title("⚖️ LEGAL SANCTUARY")
-        st.markdown("**法務リスクの防波堤**")
+        st.markdown("**法務リスクの防波堤** (会社法を中心とした一部の法律しかまだ対応してない。)")
         input_placeholder = "契約書の条項や懸念点を入力..."
 
     # Display History

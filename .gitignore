@@ -1,0 +1,19 @@
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.DS_Store
+
+# 仮想環境
+env/
+venv/
+.venv/
+
+# ローカル設定
+.env
+
+# エディタ設定
+.vscode/
+.idea/
+

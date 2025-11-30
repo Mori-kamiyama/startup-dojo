@@ -1,0 +1,36 @@
+version: "3.9"
+
+services:
+  qdrant:
+    image: qdrant/qdrant:v1.11.0
+    restart: unless-stopped
+    ports:
+      - "6333:6333"
+    # ローカルの qdrant_storage ディレクトリをそのままマウントして使用
+    volumes:
+      - ./qdrant_storage:/qdrant/storage
+
+  app:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      - qdrant
+    environment:
+      # Qdrantへの接続先（同一composeネットワーク内）
+      - QDRANT_HOST=qdrant
+      - QDRANT_PORT=6333
+
+      # 必要なAPIキー類はラズパイ側の.envから渡す想定
+      - CEREBRAS_API_KEY=${CEREBRAS_API_KEY}
+      - PERPLEXITY_API_KEY=${PERPLEXITY_API_KEY}
+      - JINA_API_KEY=${JINA_API_KEY}
+      - HF_TOKEN=${HF_TOKEN}
+    ports:
+      - "8501:8501"  # Streamlit UI
+    # モデルキャッシュをホスト側に逃がしておくとビルドが速い
+    volumes:
+      - .:/app
+      - huggingface_cache:/root/.cache/huggingface
+
+volumes:
+  huggingface_cache:

@@ -6,8 +6,7 @@ from config import (
     LEGAL_COLLECTION_NAME, 
     IDEA_COLLECTION_NAME, 
     EMBED_MODEL_ID, 
-    QDRANT_HOST, 
-    QDRANT_PORT
+    QDRANT_PATH
 )
 from utils.prompts import IDEA_SYSTEM_PROMPT_TEMPLATE, LEGAL_SYSTEM_PROMPT_TEMPLATE
 
@@ -21,7 +20,7 @@ def get_retrieval_resources():
         device = "cpu"
 
     model = SentenceTransformer(EMBED_MODEL_ID, device=device, trust_remote_code=True)
-    client = QdrantClient(QDRANT_HOST, port=QDRANT_PORT)
+    client = QdrantClient(path=QDRANT_PATH)
     return model, client
 
 def build_system_prompt(user_query, mode_label, current_phase, model, qdrant_client, cerebras_model_id, top_k=3):

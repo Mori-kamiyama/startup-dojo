@@ -93,7 +93,8 @@ def upsert_gemma():
     )
 
     # 6. Qdrantへの登録
-    client = QdrantClient("localhost", port=6333)
+    # client = QdrantClient("localhost", port=6333)
+    client = QdrantClient(path="./qdrant_storage")
     
     # EmbeddingGemmaの次元数は 768 です
     vector_size = embeddings.shape[1] 

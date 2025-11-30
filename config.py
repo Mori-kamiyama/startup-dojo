@@ -23,9 +23,10 @@ PERPLEXITY_API_KEY = os.getenv("PERPLEXITY_API_KEY")
 JINA_API_KEY = os.getenv("JINA_API_KEY")  # Optional
 HF_TOKEN = os.getenv("HF_TOKEN") or os.getenv("HUGGINGFACE_HUB_TOKEN")
 
-# Qdrant settings (allow override via environment for Docker/docker-compose)
-QDRANT_HOST = os.getenv("QDRANT_HOST", "localhost")
-QDRANT_PORT = int(os.getenv("QDRANT_PORT", "6333"))
+# Qdrant settings
+# QDRANT_HOST = os.getenv("QDRANT_HOST", "localhost")
+# QDRANT_PORT = int(os.getenv("QDRANT_PORT", "6333"))
+QDRANT_PATH = "./qdrant_storage"
 
 # Analysis Steps (The Loop)
 ANALYSIS_STEPS = {

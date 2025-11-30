@@ -21,7 +21,7 @@
 ### 1. リポジトリをクローン
 
 ```bash
-git clone https://github.com/<your-account>/startup-dojo.git
+git clone https://github.com/Mori-kamiyama/startup-dojo.git
 cd startup-dojo
 ```
 
